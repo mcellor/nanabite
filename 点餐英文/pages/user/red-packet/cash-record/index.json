@@ -1,0 +1,6 @@
+{
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "Present record",
+    "navigationBarBackgroundColor": "#f35150",
+    "navigationBarTextStyle": "white"
+}

@@ -1,0 +1,10 @@
+<!--pages/user/cash-rule/index.wxml-->
+<view class="cash-rule tc">Rule of cash</view>
+<view class="rule-cont">
+  <view>1. <text class='red' wx:if="{{min_cash_withdrawal_money != 0}}">Full {{min_cash_withdrawal_money}} $ can be presented</text>
+            <text wx:else>The minimum amount of money is not set up</text>
+  </view>
+  <view>2. The cash withdrawal is completed until the next time</view>
+  <view>3. To meet the requirements of the account, only once and for all cash balance blessing package</view>
+  <view wx:if="{{customer_service_phone == '' ? false : true}}">4. Service：{{customer_service_phone}}</view>
+</view>

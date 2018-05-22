@@ -1,0 +1,19 @@
+<!--pages/user/red-packet/cash/index.wxml-->
+<form bindsubmit='formSubmit' report-submit='{{true}}'>
+    <view class="m15">
+        <view class="cash-money-bg">
+            <view class="cash-money f20">The amount of cash available:
+                <text>${{balance_money}}</text>
+            </view>
+        </view>
+        <view class="cash-account" catchtap='chooseAccount'>
+            <view>Present account</view>
+            <view class="arrowR right-more {{cash_type == 0 ? '' : 'hidden'}}">{{bank_name}} {{bank_no}} <text hidden="{{bank_no != ''}}">Please select the account number</text></view>
+            <view class="arrowR right-more {{cash_type == 1 ? '' : 'hidden'}}">Balance account {{true_name || 'Click to fill in the real name'}}</view>
+        </view>
+        <view class="tc mt10 {{single_max_limit == 0 ? 'hidden' : (single_max_limit > balance_money ? '' : '')}}"><text class="blue">Hint: a single pen has a maximum of{{single_max_limit}}$</text></view> 
+        <view>
+            <button form-type='submit' class="cash-btn" disabled='{{!canIUseCash}}'>Application for presentation</button>
+        </view>
+    </view>
+</form>

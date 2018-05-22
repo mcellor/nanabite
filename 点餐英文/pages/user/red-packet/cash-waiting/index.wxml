@@ -1,0 +1,7 @@
+<!--pages/user/red-packet/cash-waiting/index.wxml-->
+<view class="no-content tc">
+  <image class="no-content-img" src="http://www.ixiaochengxu.cc/resource/images/common/no-course.png" mode="widthFix"></image>
+  <view class="f14">The application for withdrawals is waiting for the background processing. Please wait patiently</view>
+  <view class="f14">3-5 working days will be required for the present amount</view>
+  <view class="mt20"><button class="return-btn" catchtap='navigateBack'>Return</button></view>
+</view>

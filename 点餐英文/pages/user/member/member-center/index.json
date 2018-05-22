@@ -1,0 +1,6 @@
+{
+    "navigationBarBackgroundColor": "#3c3e43",
+    "navigationBarTitleText": "Member Center",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark"
+}

@@ -1,0 +1,5 @@
+{
+    "navigationBarTitleText": "Transaction records",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark"
+}

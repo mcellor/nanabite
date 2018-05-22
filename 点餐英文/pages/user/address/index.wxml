@@ -1,0 +1,130 @@
+<!--pages/user/address/index.wxml-->
+<view class="invoice-content {{showPage == 'list' ? '' : 'hidden'}}">
+    <view class='' wx:if="{{ isAli ? false : (isCallback && !isUseLocation) }}">
+        <view class="get-address arrowR mb10" catchtap="chooseAppAddress">
+            <text class='mr5 iconfont icon-location'></text>
+            <text>Get{{isAli ? "Alipay" : "WeChat"}}address</text>
+        </view>
+    </view>
+    <view class="sub">
+        <!-- 有收货地址  -->
+        <radio-group bindchange="radioChange">
+            <block wx:for="{{list}}" wx:key="{{index}}">
+                <view class="mb10">
+                    <view class="invoice-item">
+                        <label class="sub flex mr10">
+                            <radio value="{{index}}" class="mr5" wx:if="{{isCallback}}"></radio>
+                            <view class="sub mr10">
+                                <view class="lineText">
+                                    <text>{{item.name}}</text>
+                                    <text class="ml5">{{item.gender == 1 ? 'Mr.' : 'Ms.'}}</text>
+                                    <text class="ml5">{{item.mobile}}</text>
+                                    <text class="ml5 title-tag green gridFour" wx:if="{{item.label == 1}}">home</text>
+                                    <text class="ml5 title-tag green gridFour" wx:if="{{item.label == 2}}">school</text>
+                                    <text class="ml5 title-tag green gridFour" wx:if="{{item.label == 3}}">company</text>
+                                    <text class="ml5 title-tag green gridFour" wx:if="{{item.label == 4}}">residence</text>
+                                    <text class="ml5 title-tag green gridFour" wx:if="{{item.label == 5}}">other</text>
+                                    <view class="bianji fr" catchtap="edit" data-id="{{item.id}}" wx:if="{{isCallback}}">
+                                        <text class="mr5 iconfont icon-write grey"></text>
+                                        <text></text>
+                                    </view>
+                                </view>
+                                <view class="grey f14">
+                                    <text class="black" wx:if="{{!isCallback ? false : item.is_default == 0 ? false : true}}">【Default Address】</text>
+                                    <text>{{item.address}}{{item.detail_info}}</text>
+                                </view>
+                            </view>
+                        </label>
+                    </view>
+                    <view class="flex place-bianji gridXt f14 {{isCallback == true ? 'hidden' : ''}}">
+                        <label>
+                            <radio value='{{index}}' class="mr5" checked="{{item.is_default == 1 ? true : false}}"></radio>
+                            <text class="grey"> Make Default</text>
+                        </label>
+                        <view>
+                            <view class="bianji" catchtap="edit" data-id="{{item.id}}">
+                                <text class="mr5 iconfont icon-write grey"></text>
+                                <text>Redact</text>
+                            </view>
+                            <view class="bianji" catchtap="remove" data-id="{{item.id}}">
+                                <text class="mr5 iconfont icon-delete grey"></text>
+                                <text>Delete</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </radio-group>
+
+        <!-- 没有收货地址  -->
+        <view class="{{list.length > 0 ? 'hidden' : ''}}">
+            <view class="noInvoiceMsg">
+                <view class="tc">
+                    <view class="noInvoice-ico green">
+                        <text class="iconfont icon-locationfill"></text>
+                    </view>
+                    <view>No shipping address</view>
+                    <view class="f12">Click the add button to add</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class='address-add-box'>
+        <view class="address-add">
+            <button class='add-address-btn' type='primary' catchtap="add">+ New Address</button>
+        </view>
+    </view>
+</view>
+<view class="{{showPage == 'form' ? '' : 'hidden'}}">
+    <form bindsubmit="formSubmit">
+        <view class="flex invoice-item gridXb">
+            <view class="adress-leftTit grey">Contacts</view>
+            <view class="sub ml10">
+                <view class="gridXb mb15">
+                    <input class="add-userName" name="name" placeholder="name" placeholder-class="grey" value="{{name}}" />
+                </view>
+                <view>
+                    <text catchtap="chooseGender" data-gender="1" class="title-tag {{gender == 1 ? 'green' : 'grey'}}">Mr.</text>
+                    <text catchtap="chooseGender" data-gender="2" class="title-tag {{gender == 2 ? 'green' : 'grey'}}">Ms.</text>
+                </view>
+            </view>
+        </view>
+
+        <view class="flex invoice-item gridXb">
+            <view class='grey'>Telephone </view>
+            <view class="sub ml10">
+                <input type="number" name="mobile" placeholder="Telephone" value="{{mobile}}" />
+            </view>
+        </view>
+
+        <view class="flex invoice-item gridXb">
+            <view class="ads-detailTit grey">Community/Building/School</view>
+            <view class="selAdd sub ml15 f14" catchtap='location'>
+                <text>{{all_address}}</text>
+            </view>
+            <view class='ml10 toMap ' catchtap='location'>
+                <text class='iconfont icon-locationfill'></text>
+            </view>
+        </view>
+
+        <view class="flex invoice-item gridXb">
+            <view class='grey'>Additional information</view>
+            <view class="sub ml10">
+                <input class='f14' type="text" name="detail_info" placeholder="Such as the door number" value="{{detail_info}}" />
+            </view>
+        </view>
+
+        <view class=" invoice-item addTag">
+            <text catchtap="chooseLabel" data-label="1" class="title-tag {{label == 1 ? 'green' : 'grey'}}">home</text>
+            <text catchtap="chooseLabel" data-label="2" class="title-tag {{label == 2 ? 'green' : 'grey'}}">school</text>
+            <text catchtap="chooseLabel" data-label="3" class="title-tag {{label == 3 ? 'green' : 'grey'}}">company</text>
+            <text catchtap="chooseLabel" data-label="4" class="title-tag {{label == 4 ? 'green' : 'grey'}}">residence</text>
+            <text catchtap="chooseLabel" data-label="5" class="title-tag {{label == 5 ? 'green' : 'grey'}}">other</text>
+        </view>
+
+        <view class="flex btn-box">
+            <button class="sub f16" disabled="{{buttonIsDisabled}}" type="warn" catchtap="cancel">Cancel</button>
+            <button class="sub f16" disabled="{{buttonIsDisabled}}" loading="{{false}}" type="primary" formType="submit">Save</button>
+        </view>
+    </form>
+</view>

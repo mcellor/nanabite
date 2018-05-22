@@ -1,0 +1,9 @@
+<!--pages/pay-success/pay-success.wxml-->
+<view class="pay-success">
+    <view class="success tc">
+        <icon type="info" size="64" />
+        <view class="f20 blue">privilege grant failed</view>
+        <view class="f14 mt20 grey">This application needs your authorization. We will not steal your personal information</view>
+    </view>
+    <button class="wancheng tc blue" open-type="getUserInfo" bindgetuserinfo="onUserInfo" catchtap="onUserInfoTap">Re authorize</button>
+</view>

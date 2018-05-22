@@ -1,0 +1,65 @@
+<view class="m15" wx:if="{{!is_orderInfo_show==1}}">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="top-content flex">
+      <input class="sub hexiao-input gridFour mr10" name="order_number" placeholder="Please enter the verification code" />
+      <button class="top-btn" size="mini" type="primary" formType="submit">Confirm</button>
+    </view>
+  </form>
+  <view class="hexiao-box mt10">
+    <button class="hexiao-btn  mid" type="primary" bindtap="scanCode">Sweep the code verification</button>
+  </view>
+</view>
+
+<view class="m10" wx:if="{{is_orderInfo_show==1}}">
+<block wx:if="{{oinfo.goods_info != undefind}}">
+  <view class='commBox flex' wx:for="{{oinfo.goods_info}}">
+    <image class='hxPic' mode='aspectFill' src='{{item.goods_icon_url}}'></image>
+    <view class='hxRg sub f14'>
+      <view class='hxTit lineText2 '>{{item.goods_name}}</view>
+      <view class='grey lineText'>{{item.goods_attr}}</view>
+    </view>
+    <view class="tr"><view>${{item.goods_price}}</view><view class='grey'>×{{item.goods_number}}</view></view>
+  </view>
+  <view class="ui-cell ui-cells gridXt">
+  <view class='tr grey'>
+    <text>Total:<text class='subColor'>${{oinfo.pay_money}}</text></text>
+  </view>
+  <view class='grey tr'>
+    <text>Order time:{{oinfo.pay_time}}</text>
+  </view>
+  </view>
+  
+</block>
+<block wx:else>
+  <view class='commBox flex mb15' >
+    <image class='hxPic' mode='aspectFill' src='{{oinfo.goods_icon_url}}'></image>
+    <view class='hxRg sub flex  f14'>
+      <view class='hxTit lineText2 '>{{oinfo.goods_name}}</view>
+      <view class='grey'>
+        <text>Order time:{{oinfo.pay_time}}</text>
+      </view>
+      <view class='grey '>
+        <text>Payment amount:<text class='subColor'>${{oinfo.pay_money}}</text></text>
+      </view>
+    </view>
+  </view>
+</block>
+  <view class="ui-cell mb15 mt10">
+    <view class='cell gridXb flex'>
+      <view class='grey'>name</view>
+      <view>{{oinfo.real_name}}</view>
+    </view>
+    <view class='cell gridXb flex'>
+      <view class='grey'>mobile</view>
+      <view>{{oinfo.mobile}}</view>
+    </view>
+    <view class='cell gridXb flex'>
+      <view class='grey'>auth code</view>
+      <view>{{oinfo.examid}}</view>
+    </view>
+  </view>
+  <view class="footBtn">
+    <button type="primary" bindtap="sureChargeOff">confirm</button>
+    <button class="mt10" bindtap="cancel">cancel</button>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "Withdrawals",
+    "navigationBarBackgroundColor": "#f35150",
+    "navigationBarTextStyle": "white"
+}

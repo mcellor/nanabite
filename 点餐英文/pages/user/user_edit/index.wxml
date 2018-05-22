@@ -1,0 +1,58 @@
+<view class="user_content">
+    <view class="Member_head">
+        <view class="Member_img domain">
+            <image class="userinfo-avatar" src="{{userInfo.user_headimg}}" background-size="cover"></image>
+            <view class="userinfo_name">{{userInfo.user_nickname}}</view>
+        </view>
+    </view>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="user_edit_con">
+            <view class="user_edit_li">
+                <view class="user_edit_li_title"><text class="fr grey"></text>name</view>
+                <view class="user_edit_li_input"><input name="u_name" maxlength="16" placeholder="8个字以内" value="{{userInfo.user_nickname}}" /></view>
+            </view>
+            <view class="user_edit_li">
+                <view class="user_edit_li_title">sex</view>
+                <view class="user_edit_li_input">
+                    <radio-group class="radio-group" name="u_sex">
+                        <block wx:if="{{userInfo.u_sex == 1}}">
+                            <radio value="1" checked="checked" />Male
+                        </block>
+                        <block wx:else>
+                            <radio value="1" />Male
+                        </block>
+                        <block wx:if="{{userInfo.u_sex == 2}}">
+                            <radio value="2" checked="checked" />Female
+                        </block>
+                        <block wx:else>
+                            <radio value="2" />Female
+                        </block>
+                    </radio-group>
+                </view>
+            </view>
+            <view class="user_edit_li">
+                <view class="user_edit_li_title"><text></text> mobile number</view>
+                <view class="user_edit_li_input">
+                    <input name="u_phone" maxlength="11" placeholder="Please fill in the phone number correctly" value="{{userInfo.u_phone}}" />
+                </view>
+            </view>
+            <view class="user_edit_li">
+                <view class="user_edit_li_title">
+                    <text class="fr grey">(Within 18 words)</text>address
+                </view>
+                <view class="user_edit_li_input">
+                    <input name="u_address" maxlength="18" placeholder="18个字以内" value="{{userInfo.u_address}}" />
+                </view>
+            </view>
+            <view class="user_edit_li">
+                <view class="user_edit_li_title"><text class="fr grey">(Within 100 words)</text>Introduce yourself in detail</view>
+                <view class="user_edit_li_input">
+                    <input name="u_jieshao" maxlength="100" placeholder="Within 100 words" value="{{userInfo.u_jieshao}}" />
+                </view>
+            </view>
+        </view>
+        <view class="m20">
+            <button formType="submit" type="primary" disabled="{{!userInfo}}" hover-class="none">Submit</button>
+        </view>
+    </form>
+</view>

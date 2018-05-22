@@ -1,0 +1,6 @@
+{
+    "navigationBarBackgroundColor": "#3c3e43",
+    "navigationBarTitleText": "Transaction record",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark"
+}
