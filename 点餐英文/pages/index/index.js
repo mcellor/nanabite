@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    key1: 1,
+    key2: 0.5
   },
 
   /**
@@ -13,6 +14,47 @@ Page({
    */
   onLoad: function (options) {
   
+  },
+
+  bindkey1: function (e) {
+    var key1 = this.data.key1;
+    var key2 = this.data.key2;
+    key1=1;
+    key2=0.5;
+    this.setData({
+      key1: key1,
+      key2: key2
+    })
+  },
+
+  bindkey2: function (e) {
+    var key1 = this.data.key1;
+    var key2 = this.data.key2;
+    key2 = 1;
+    key1 = 0.5;
+    this.setData({
+      key1: key1,
+      key2: key2
+    })
+  },
+
+  sumbit: function (e) {
+    var key1 = this.data.key1;
+    var key2 = this.data.key2;
+    var language = 'chs';
+    if(key1 == 0.5){
+      language = 'eng';
+    };
+
+    if (language == 'chs') {
+
+      wx.switchTab({
+          url: '../restaurant/restaurant-home/index'
+
+        });
+
+    } else {
+    }
   },
 
   /**
